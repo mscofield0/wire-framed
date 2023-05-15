@@ -1,0 +1,23 @@
+[package]
+name = "wire-framed"
+version = "0.1.0"
+edition = "2021"
+categories = ["encoding"]
+description = "A library for encoding and decoding structures into a binary data format."
+homepage = "https://github.com/mscofield0/wire-framed"
+keywords = ["encoding", "binary"]
+license-file = "LICENSE"
+readme = "README.md"
+repository = "https://github.com/mscofield0/wire-framed"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+wire-framed-core = { path = "src/wire-framed-core" }
+wire-framed-derive = { path = "src/wire-framed-derive" }
+
+[workspace]
+members = [
+	"src/wire-framed-core",
+	"src/wire-framed-derive",
+]
