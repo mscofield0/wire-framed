@@ -13,8 +13,8 @@ repository = "https://github.com/mscofield0/wire-framed"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-wire-framed-core = { path = "src/wire-framed-core" }
-wire-framed-derive = { path = "src/wire-framed-derive" }
+wire-framed-core = { version = "0.1.0" }
+wire-framed-derive = { version = "0.1.0" }
 
 [workspace]
 members = [
