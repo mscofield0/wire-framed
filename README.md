@@ -20,8 +20,6 @@ pub struct Foo {
     pub created_at: u64,
 }
 
-# fn send_to_socket(_frame: Bytes) -> Result<(), std::io::Error> { Ok(()) }
-
 fn send() -> Result<(), std::io::Error> {
     let foo = Foo {
         id: 1,
@@ -34,31 +32,12 @@ fn send() -> Result<(), std::io::Error> {
     send_to_socket(frame)
 }
 
-# fn recv_from_socket() -> Bytes {
-#     Bytes::from_static(&[
-#        0x00, 0x00, 0x00, 0x01, // id
-#        0x00, 0x00, 0x00, 0x04, // name length
-#        0x4a, 0x6f, 0x68, 0x6e, // name
-#        0x00, 0x00, 0x00, 0x10, // description length
-#        0x4a, 0x6f, 0x68, 0x6e, 0x20, 0x69, 0x73, 0x20, 0x61, 0x20, 0x6c, 0x65, 0x67, 0x65, 0x6e, 0x64, // description
-#        0x00, 0x00, 0x00, 0x00, 0x49, 0x96, 0x02, 0xd2, // created_at
-#     ])
-# }
-
 fn recv() -> Result<(), std::io::Error> {
     let bytes = recv_from_socket();
     let foo = Foo::from_frame(bytes)?;
-//!
+    
     // process foo
-#   Ok(())
 }
-
-# fn main() -> Result<(), std::io::Error> {
-#     send()?;
-#     recv()?;
-#
-#     Ok(())
-# }
 ```
 
 # Usage with messages
