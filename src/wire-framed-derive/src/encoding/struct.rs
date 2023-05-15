@@ -11,9 +11,7 @@ pub fn struct_impl(input: &DeriveInput, data: DataStruct) -> TokenStream2 {
 	if is_unit_struct {
 		return quote! {
 			impl #impl_generics ::wire_framed::wire_framed_core::IntoFrame for #name #ty_generics #where_clause {
-				fn extend_frame(_frame: &mut ::wire_framed::wire_framed_core::bytes::BytesMut) {
-					Ok(Self)
-				}
+				fn extend_frame(&self, _frame: &mut ::wire_framed::wire_framed_core::bytes::BytesMut) {}
 
 				fn size_hint(&self) -> usize {
 					0
