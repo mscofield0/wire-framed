@@ -14,6 +14,10 @@ pub fn struct_impl(input: &DeriveInput, data: DataStruct) -> TokenStream2 {
 				fn extend_frame(_frame: &mut ::wire_framed::wire_framed_core::bytes::BytesMut) {
 					Ok(Self)
 				}
+
+				fn size_hint(&self) -> usize {
+					0
+				}
 			}
 		};
 	}
@@ -27,6 +31,10 @@ pub fn struct_impl(input: &DeriveInput, data: DataStruct) -> TokenStream2 {
 					use ::wire_framed::wire_framed_core::bytes::BufMut;
 					#(::wire_framed::wire_framed_core::IntoFrame::extend_frame(&#unnamed_fields, frame);)*
 				}
+
+				fn size_hint(&self) -> usize {
+					[#(::wire_framed::wire_framed_core::IntoFrame::size_hint(&#unnamed_fields)),*].iter().sum()
+				}
 			}
 		};
 	}
@@ -37,6 +45,10 @@ pub fn struct_impl(input: &DeriveInput, data: DataStruct) -> TokenStream2 {
 			fn extend_frame(&self, frame: &mut ::wire_framed::wire_framed_core::bytes::BytesMut) {
 				use ::wire_framed::wire_framed_core::bytes::BufMut;
 				#(::wire_framed::wire_framed_core::IntoFrame::extend_frame(&self.#field_names, frame);)*
+			}
+			
+			fn size_hint(&self) -> usize {
+				[#(::wire_framed::wire_framed_core::IntoFrame::size_hint(&self.#field_names)),*].iter().sum()
 			}
 		}
 	}

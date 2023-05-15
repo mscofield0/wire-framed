@@ -17,6 +17,8 @@ mod tests {
     fn test1() {
         let foo = Test::Baz("John".to_string());
 
+        assert_eq!(foo.size_hint(), 8);
+
         let frame = foo.into_frame();
         let result = Bytes::from_static(&[
             2, // Baz
