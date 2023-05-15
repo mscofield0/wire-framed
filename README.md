@@ -3,8 +3,8 @@
 wire-framed is a library for encoding and decoding messages using a custom binary protocol.
 It prioritizes ease of use and performance.
 
-It revolves around the [`Message`] type that can hold multiple frames of data (represented with the [`bytes::Bytes`] type), 
-and 4 main traits: [`FromFrame`], [`IntoFrame`], [`FromMessage`] and [`IntoMessage`].
+It revolves around the `Message` type that can hold multiple frames of data (represented with the `bytes::Bytes` type), 
+and 4 main traits: `FromFrame`, `IntoFrame`, `FromMessage` and `IntoMessage`.
 
 Each frame should be a self-contained piece of data that can be decoded without any context.
 
