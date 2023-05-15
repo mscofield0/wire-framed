@@ -1,6 +1,6 @@
 [package]
 name = "wire-framed"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 categories = ["encoding"]
 description = "A library for encoding and decoding structures into a binary data format."

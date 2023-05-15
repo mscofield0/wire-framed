@@ -8,6 +8,9 @@ pub struct Foo {
     pub d: Vec<u8>,
 }
 
+#[derive(Encoding)]
+pub struct Bar;
+
 #[cfg(test)]
 mod tests {
     use wire_framed::bytes::Bytes;
