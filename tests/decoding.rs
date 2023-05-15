@@ -35,4 +35,16 @@ mod tests {
 
         assert_eq!(foo, result);
     }
+
+    #[test]
+    fn tuple_test() {
+        let frame = Bytes::from_static(&[
+            0, 0, 0, 1, // 0
+            0, 0, 0, 2, // 1
+        ]);
+        let (a, b): (u32, u32) = FromFrame::from_frame(frame).unwrap();
+
+        assert_eq!(a, 1);
+        assert_eq!(b, 2);
+    }
 }

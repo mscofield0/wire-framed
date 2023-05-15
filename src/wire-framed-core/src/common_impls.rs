@@ -225,3 +225,150 @@ impl<T: IntoFrame + PartialEq + Eq + Hash> IntoFrame for HashSet<T> {
 		4 + self.iter().map(|value| value.size_hint()).sum::<usize>()
 	}
 }
+
+impl<T1, T2> IntoFrame for (T1, T2)
+where
+	T1: IntoFrame,
+	T2: IntoFrame,
+{
+	fn extend_frame(&self, frame: &mut BytesMut) {
+		self.0.extend_frame(frame);
+		self.1.extend_frame(frame);
+	}
+
+	fn size_hint(&self) -> usize {
+		self.0.size_hint() + self.1.size_hint()
+	}
+}
+
+impl<T1, T2, T3> IntoFrame for (T1, T2, T3)
+where
+	T1: IntoFrame,
+	T2: IntoFrame,
+	T3: IntoFrame,
+{
+	fn extend_frame(&self, frame: &mut BytesMut) {
+		self.0.extend_frame(frame);
+		self.1.extend_frame(frame);
+		self.2.extend_frame(frame);
+	}
+
+	fn size_hint(&self) -> usize {
+		self.0.size_hint() + self.1.size_hint() + self.2.size_hint()
+	}
+}
+
+impl<T1, T2, T3, T4> IntoFrame for (T1, T2, T3, T4)
+where
+	T1: IntoFrame,
+	T2: IntoFrame,
+	T3: IntoFrame,
+	T4: IntoFrame,
+{
+	fn extend_frame(&self, frame: &mut BytesMut) {
+		self.0.extend_frame(frame);
+		self.1.extend_frame(frame);
+		self.2.extend_frame(frame);
+		self.3.extend_frame(frame);
+	}
+
+	fn size_hint(&self) -> usize {
+		self.0.size_hint() + self.1.size_hint() + self.2.size_hint() + self.3.size_hint()
+	}
+}
+
+impl<T1, T2, T3, T4, T5> IntoFrame for (T1, T2, T3, T4, T5)
+where
+	T1: IntoFrame,
+	T2: IntoFrame,
+	T3: IntoFrame,
+	T4: IntoFrame,
+	T5: IntoFrame,
+{
+	fn extend_frame(&self, frame: &mut BytesMut) {
+		self.0.extend_frame(frame);
+		self.1.extend_frame(frame);
+		self.2.extend_frame(frame);
+		self.3.extend_frame(frame);
+		self.4.extend_frame(frame);
+	}
+
+	fn size_hint(&self) -> usize {
+		self.0.size_hint() + self.1.size_hint() + self.2.size_hint() + self.3.size_hint() + self.4.size_hint()
+	}
+}
+
+impl<T1, T2, T3, T4, T5, T6> IntoFrame for (T1, T2, T3, T4, T5, T6)
+where
+	T1: IntoFrame,
+	T2: IntoFrame,
+	T3: IntoFrame,
+	T4: IntoFrame,
+	T5: IntoFrame,
+	T6: IntoFrame,
+{
+	fn extend_frame(&self, frame: &mut BytesMut) {
+		self.0.extend_frame(frame);
+		self.1.extend_frame(frame);
+		self.2.extend_frame(frame);
+		self.3.extend_frame(frame);
+		self.4.extend_frame(frame);
+		self.5.extend_frame(frame);
+	}
+
+	fn size_hint(&self) -> usize {
+		self.0.size_hint() + self.1.size_hint() + self.2.size_hint() + self.3.size_hint() + self.4.size_hint() + self.5.size_hint()
+	}
+}
+
+impl<T1, T2, T3, T4, T5, T6, T7> IntoFrame for (T1, T2, T3, T4, T5, T6, T7)
+where
+	T1: IntoFrame,
+	T2: IntoFrame,
+	T3: IntoFrame,
+	T4: IntoFrame,
+	T5: IntoFrame,
+	T6: IntoFrame,
+	T7: IntoFrame,
+{
+	fn extend_frame(&self, frame: &mut BytesMut) {
+		self.0.extend_frame(frame);
+		self.1.extend_frame(frame);
+		self.2.extend_frame(frame);
+		self.3.extend_frame(frame);
+		self.4.extend_frame(frame);
+		self.5.extend_frame(frame);
+		self.6.extend_frame(frame);
+	}
+
+	fn size_hint(&self) -> usize {
+		self.0.size_hint() + self.1.size_hint() + self.2.size_hint() + self.3.size_hint() + self.4.size_hint() + self.5.size_hint() + self.6.size_hint()
+	}
+}
+
+impl<T1, T2, T3, T4, T5, T6, T7, T8> IntoFrame for (T1, T2, T3, T4, T5, T6, T7, T8)
+where
+	T1: IntoFrame,
+	T2: IntoFrame,
+	T3: IntoFrame,
+	T4: IntoFrame,
+	T5: IntoFrame,
+	T6: IntoFrame,
+	T7: IntoFrame,
+	T8: IntoFrame,
+{
+	fn extend_frame(&self, frame: &mut BytesMut) {
+		self.0.extend_frame(frame);
+		self.1.extend_frame(frame);
+		self.2.extend_frame(frame);
+		self.3.extend_frame(frame);
+		self.4.extend_frame(frame);
+		self.5.extend_frame(frame);
+		self.6.extend_frame(frame);
+		self.7.extend_frame(frame);
+	}
+
+	fn size_hint(&self) -> usize {
+		self.0.size_hint() + self.1.size_hint() + self.2.size_hint() + self.3.size_hint() + self.4.size_hint() + self.5.size_hint() + self.6.size_hint() + self.7.size_hint()
+	}
+}
