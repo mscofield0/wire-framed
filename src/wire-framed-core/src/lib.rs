@@ -9,6 +9,7 @@ pub use bytes;
 
 use std::collections::VecDeque;
 use bytes::{Bytes, BytesMut};
+use tokio_util::codec::Encoder;
 
 /// A message with frames.
 /// 
@@ -139,6 +140,14 @@ pub trait IntoMessage: Sized {
         let mut msg = Message::new();
         self.extend_message(&mut msg);
         msg
+    }
+
+    fn into_bytes(&self) -> Bytes {
+        let msg = self.into_message();
+        let mut codec = MessageCodec::default();
+        let mut bytes = BytesMut::with_capacity(msg.byte_count());
+        codec.encode(msg, &mut bytes).expect("a message should never fail to be encoded");
+        bytes.into()
     }
 }
 
