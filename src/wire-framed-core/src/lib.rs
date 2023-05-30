@@ -4,6 +4,7 @@ pub mod common_impls;
 pub use codec::{FrameCodec, Framed, FramedRead, FramedWrite};
 pub use common_impls::*;
 pub use bytes;
+pub use tokio_util::codec as tokio_codec;
 
 use bytes::{Bytes, BytesMut};
 

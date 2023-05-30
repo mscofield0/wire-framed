@@ -65,7 +65,7 @@
 
 
 pub use wire_framed_core::{
-    self, FromFrame, IntoFrame, FrameCodec, bytes::{self, Bytes, BytesMut, Buf, BufMut}, codec, common_impls::*, utils
+    self, FromFrame, IntoFrame, FrameCodec, Framed, FramedRead, FramedWrite, bytes::{self, Bytes, BytesMut, Buf, BufMut}, codec, common_impls::*, utils
 };
 pub use wire_framed_derive::{Decoding, Encoding};
 
