@@ -226,18 +226,6 @@ impl<T: IntoFrame + PartialEq + Eq + Hash> IntoFrame for HashSet<T> {
 	}
 }
 
-impl IntoMessage for Message {
-	fn extend_message(&self, msg: &mut Message) {
-		self.frames.iter().for_each(|frame| msg.push(frame.clone()));
-	}
-}
-
-impl IntoMessage for Bytes {
-	fn extend_message(&self, msg: &mut Message) {
-		msg.push(self.clone());
-	}
-}
-
 impl<T1, T2> IntoFrame for (T1, T2)
 where
 	T1: IntoFrame,
