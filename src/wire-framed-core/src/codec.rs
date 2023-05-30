@@ -2,6 +2,10 @@ use bytes::{Bytes, BytesMut, BufMut, Buf};
 use tokio_util::codec::{Encoder, Decoder};
 pub use tokio_util::codec::*;
 
+pub type Framed<S> = tokio_util::codec::Framed<S, FrameCodec>;
+pub type FramedRead<S> = tokio_util::codec::FramedRead<S, FrameCodec>;
+pub type FramedWrite<S> = tokio_util::codec::FramedWrite<S, FrameCodec>;
+
 /// Codec type for [`Message`] that implements [`tokio_util::codec::Decoder`] and [`tokio_util::codec::Encoder`].
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FrameCodec {

@@ -1,7 +1,7 @@
 pub mod codec;
 pub mod utils;
 pub mod common_impls;
-pub use codec::FrameCodec;
+pub use codec::{FrameCodec, Framed, FramedRead, FramedWrite};
 pub use common_impls::*;
 pub use bytes;
 
