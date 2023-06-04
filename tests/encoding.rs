@@ -9,6 +9,9 @@ pub struct Foo {
 }
 
 #[derive(Encoding)]
+pub struct Baz(pub u32);
+
+#[derive(Encoding)]
 pub struct Bar;
 
 #[cfg(test)]

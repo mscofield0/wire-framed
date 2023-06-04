@@ -22,7 +22,7 @@ pub fn struct_impl(input: &DeriveInput, data: DataStruct) -> TokenStream2 {
 
 	let is_tuple_struct = data.fields.iter().next().unwrap().ident.is_none();
 	if is_tuple_struct {
-		let unnamed_fields = data.fields.iter().enumerate().map(|(i, _)| quote! { self.#i }).collect::<Vec<_>>();
+		let unnamed_fields = data.fields.iter().enumerate().map(|(i, _)| syn::Index::from(i)).map(|i| quote! { self.#i }).collect::<Vec<_>>();
 		return quote! {
 			impl #impl_generics ::wire_framed::wire_framed_core::IntoFrame for #name #ty_generics #where_clause {
 				fn extend_frame(&self, frame: &mut ::wire_framed::wire_framed_core::bytes::BytesMut) {
