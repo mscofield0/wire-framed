@@ -21,13 +21,13 @@ pub fn enum_impl(input: &DeriveInput, data: DataEnum) -> TokenStream2 {
 		} else {
 			let is_tuple_struct = variant.fields.iter().next().unwrap().ident.is_none();
 			if is_tuple_struct {
-				let empty_iters = variant.fields.iter().map(|_| quote! {}).collect::<Vec<_>>();
-				quote! { Self::#variant_name(#(#empty_iters ::wire_framed::wire_framed_core::FromFrame::parse_frame(frame)?,)*) }
+				let variant_id_iters = variant.fields.iter().enumerate().map(|(i, _)| syn::Index::from(i)).collect::<Vec<_>>();
+				quote! { Self::#variant_name(#(::wire_framed::wire_framed_core::FromFrame::parse_frame(frame).map_err(|err| ::std::io::Error::new(::std::io::ErrorKind::InvalidInput, format!("expected '{}' variant: expected '{}': {}", stringify!(#variant_name), stringify!(#variant_id_iters), err)))?,)*) }
 			} else {
 				let field_names = variant.fields.iter().map(|field| &field.ident).collect::<Vec<_>>();
 				quote! {
 					Self::#variant_name {
-						#(#field_names: ::wire_framed::wire_framed_core::FromFrame::parse_frame(frame).map_err(|err| ::std::io::Error::new(::std::io::ErrorKind::InvalidInput, format!("expected '{}': {}", stringify!(#field_names), err)))?,)*
+						#(#field_names: ::wire_framed::wire_framed_core::FromFrame::parse_frame(frame).map_err(|err| ::std::io::Error::new(::std::io::ErrorKind::InvalidInput, format!("expected '{}' variant: expected '{}': {}", stringify!(#variant_name), stringify!(#field_names), err)))?,)*
 					}
 				}
 			}
